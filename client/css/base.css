@@ -1,0 +1,49 @@
+﻿.left-container {
+	background: #fff;
+	border: 1px solid #fafafa;
+	position: relative;
+	margin-bottom: 15px;
+}
+
+div.deals {
+	background-color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, .5);
+	border: none;
+	border-radius: 0;
+	position: relative;
+	position: relative;
+	margin-bottom: 15px;
+}
+div.deals ul {
+	margin-bottom: 0;
+	position: relative;
+}
+div.deals h2 {
+	font-size: 18px;
+	color: #303134;
+	margin: 10px 14px;
+	padding: 10px 0 0;
+	line-height: 18px;
+}
+.conteneur-deals {
+	width: auto;
+	padding-top: 15px;
+	border-top: 1px solid #cccccc;
+	clear: both;
+}
+p.type-deal {
+	color: #636363;
+	font-weight: bold;
+	margin-bottom: 0;
+	line-height: 16px;
+}
+.deals .thumbnails > li:first-child {
+	margin-left: 33px;
+}
+.deals .thumbnails > li:last-child {
+	margin-right: 0;
+}
+.deals .thumbnails > li {
+	margin-left: 0;
+	margin-right: 15px;
+}

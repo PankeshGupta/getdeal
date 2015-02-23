@@ -1,0 +1,31 @@
+{% extends "base_in.html" %}
+{% load i18n %}
+
+{% block content %}
+<div id="content">	
+    <h2>{% trans "Notices" %}</h2>
+    
+    {% if notices %}
+       <a href="{% url notification_mark_all_seen %}">{% trans "Mark all unseen notices seen" %}</a>
+
+        {% regroup notices by added.date as notices_by_date %}
+        
+        {% for date in notices_by_date %}
+            {% for notice in date.list %}
+                {% if notice.is_unseen %}
+                    <div class="unseen_notice">
+                {% else %}
+                    <div class="notice">
+                {% endif %}                   
+                    <span class="notice_message">{{ notice.message|safe }}</span>
+                  
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        
+    {% else %}
+        <p>{% trans "Pas de notifications." %}</p>
+    {% endif %}	
+</div>
+{% endblock %}

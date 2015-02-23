@@ -1,0 +1,23 @@
+{% extends "profiles/base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block profile %}
+        <div ng-app="Profiles" ng-controller="ProfilesCtr" ng-cloak>
+            <div class="body-likes-user" ng-if="deals.length == 0">
+                <img src="{% static 'css/images/empty-user-likes.png' %}" alt="" class="heart-likes"/>
+
+                <p class="text-desc">
+                    {{ profile.user.first_name }} n'a ajouté aucune mention J'aime pour le moment.
+                </p>
+            </div>
+
+            <div class="deals" ng-if="deals.length > 0">
+                <div class="conteneur-deals clearfix">
+                    <ul class="thumbnails deals-thumb">
+                        {% include '_deal.html' %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+{% endblock %}

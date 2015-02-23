@@ -1,0 +1,50 @@
+{% extends "setting/base.html"%}
+{% load i18n %}
+{% block head_title %}Setting Notifications{% endblock %}
+{% block extra_head %}
+	<meta name="keywords" content="Setting, notifications"/>
+	<meta name="description" content="Setting notifications."/>
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/notification.css" />
+{% endblock %}
+{% block content %}	
+<div class="row">
+	{% block sidebar %}
+		{% include "sidebars/sidebar_setting.html" %}
+	{% endblock %}
+  <div class="span6">
+  <form method="POST" action="" class="well"> {# doubt this easy to do in uni-form #}
+        {% csrf_token %}
+        <table class="notice_settings">
+            <tr>
+                <th>{% trans "Notification Type" %}</th>
+                {% for header in notice_settings.column_headers %}
+                    <th>{{ header }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in notice_settings.rows %}
+                <tr>
+                    <td>{% trans row.notice_type.display %}<br/>
+                        <span class="notice_type_description">{% trans row.notice_type.description %}</span>
+                    </td>
+                    {% for cell in row.cells %}
+                        <td>
+                            <input type="checkbox" name="{{ cell.0 }}" {% if cell.1 %}checked="yes"{% endif %}/>
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            <tr>
+                <td><input type="submit" value="{% trans "Change" %}" class="btn"/></td>
+            </tr>
+        </table>
+    </form>
+	</div>
+</div>
+{% endblock %}
+{% block extra_content %}
+	<script type="text/javascript">
+		 $(function(){
+		 	$('a.a_notices').parent().addClass('active');			
+		 });	
+	</script>
+{% endblock %}

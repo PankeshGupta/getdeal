@@ -1,0 +1,22 @@
+<div class="entete-profil-utilisateur">
+    <div class="entete box-shadow-cont">
+        <img alt="" class="img-facebook" src="{{ profile.thumbnail }}"/>
+        <h3 class="nom-utilisateur">{{ profile.fullname }}</h3>
+        <ul class="liste-activites unstyled">
+            <li class="avis"><i class="icon-comment"></i>{{ profile.current_stats.nbr_rated_deals }} avis :
+                <ul class="unstyled">
+                    {% for rate_count in rates_counts %}
+                        <li>
+                            <i class="{{ rate_count.deal__category__slug }} sprite-icon-deal"></i>
+                            {{ rate_count.count_by_category }} avis sur les deals
+                            de '{{ rate_count.deal__category__name }}'
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="barre-fonctionnalites-gradient box-shadow-cont">
+    <a class="active" href="">{{ profile.current_stats.nbr_positive_deals }} Favoris</a> <a href="">{{ profile.current_stats.nbr_rated_deals }} Avis</a>
+</div>

@@ -1,0 +1,30 @@
+{% extends "profiles/base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block profile %}
+        <div>
+            {% if rates %}
+                <ul class="liste-activites unstyled">
+                <li class="avis"><i class="icon-comment"></i>{{ rates.count }} avis :
+                <ul class="unstyled">
+                {% for rate in rates %}
+                    <li><i class="{{ rate.category_slug }} sprite-icon-deal"></i>{{ rate.count }} avis sur les deals de
+                    '{{ rate.category_name }}'</li>
+                {% endfor %}
+                </ul>
+                </li>
+                <li><i class="icon-check-sign"></i>{{ rate.active }} avis utiles</li>
+                <li><i class="icon-ban-circle"></i>{{ rate.incative }} avis rejetés</li>
+                </ul>
+            {% else %}
+            <div class="body-likes-user">
+                <img src="{% static 'css/images/empty-user-likes.png' %}" alt="" class="heart-likes"/>
+
+                <p class="text-desc">
+                    {{ profile.user.first_name }} n'a ajouté aucune mention J'aime pour le moment.
+                </p>
+            </div>
+            {% endif %}
+        </div>
+{% endblock %}

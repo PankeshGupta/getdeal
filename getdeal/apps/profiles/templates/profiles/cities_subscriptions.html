@@ -1,0 +1,87 @@
+{% extends "base_in.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base-edit-profil.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/utils.css' %}"/>
+<style>
+.action-reglage-ville {
+	margin-top: 20px;
+	margin-left: 15px;
+	margin-bottom: 20px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 60%;
+	color: #333;
+}
+.action-reglage-ville th {
+	font-weight: 500;
+	color: #676767;
+	font-size: 13px;
+	text-align: left;
+}
+.action-reglage-ville td {
+	font-size: 12px;
+}
+.action-reglage-ville th, table.action-reglage-ville td {
+	border-bottom: 1px solid #ececec;
+	padding: 8px 0;
+}
+.action {
+	width: 100px;
+}
+.ajouter-ville-btn {
+	position: relative;
+	margin-left: 15px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="row conteneur-principal">
+        {% include 'profiles/_side_bar.html' %}
+        <div class="contenu-reglages">
+            <h2>Editer/Ajouter ville</h2>
+			<hr />
+			<h4 class="titre-reglage">Lorem ipsum dolor sit amet, consectetur adipiscing
+			elit.</h4>
+			<p class="description-reglage">sit amet pharetra est dapibus. Morbi
+			ultricies lacus metus, non molestie ligula euismod eget. </p>
+			<table class="action-reglage-ville">
+				<thead>
+					<tr>
+						<th>Actuellement abonné à:</th>
+						<th class="action">Action:</th>
+					</tr>
+				</thead>
+                {% for subscription in cities_subscriptions %}
+				<tr>
+					<td>{{ subscription.city.name }}</td>
+					<td>
+                         <form action="{% url 'profiles:city-preferences' %}"
+                              method="post">{% csrf_token %}
+                            <input type="hidden" name="subscription_pk"
+                                   value="{{ subscription.pk }}"/>
+                            <button class="btn btn-mini pull-right mark-read"><a href="" title="">Enlever</a></button>
+                        </form>
+                    </td>
+				</tr>
+                {% endfor %}
+			</table>
+			<a class="btn btn-info ajouter-ville-btn">Ajouter une nouvelle ville</a>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/utils-principal.js' %}"></script>
+    <script type="text/javascript">
+        (function ($) {
+            $.vegas({ // Initialisation du plugin vegas pour le Ré-échantillonnage d'image lors du redimensionnement de la fenêtre
+                src: "{% static 'css/images/background-principal.png' %}"
+            });
+        })(jQuery);
+    </script>
+{% endblock %}

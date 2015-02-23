@@ -1,0 +1,65 @@
+{% extends "base_in.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base-edit-profil.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/utils.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/green.css' %}"/>
+    <style>
+        .liste-activites {/*Override*/
+
+            font-size: 14px;
+        }
+        .liste-activites li { /*Override*/
+            margin-left: 15px;
+        }
+        div.deals {
+            background: none; /*Override*/
+        }
+        .conteneur-deals {
+            border-top: none;
+            padding-left: 10px;
+        }
+        .heart-likes {
+            display: block;
+            width: 153px;
+            height: 132px;
+            margin: 0 auto;
+        }
+
+        .text-desc {
+            text-align: center;
+            font-size: 17px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="row conteneur-principal">
+        {% include 'profiles/_head.html' %}
+        {% block profile %}{% endblock %}
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/utils-principal.js' %}"></script>
+    <script src="{% static 'js/angular/angular.min.js' %}"></script>
+    <script src="{% static 'js/angular/angular-cookies.min.js' %}"></script>
+    <script src="{% static 'js/angular/angular-resource.min.js' %}"></script>
+    <script src="{% static 'js/moment.min.js' %}"></script>
+    <script src="{% static 'js/apps/profiles/app.js' %}"></script>
+    <script src="{% static 'js/apps/profiles/services.js' %}"></script>
+    <script src="{% static 'js/apps/utils/filters.js' %}"></script>
+    <script src="{% static 'js/apps/utils/services.js' %}"></script>
+    <script src="{% static 'js/apps/profiles/controllers.js' %}"></script>
+    <script type="text/javascript">
+        (function ($) {
+            $.vegas({ // Initialisation du plugin vegas pour le Ré-échantillonnage d'image lors du redimensionnement de la fenêtre
+                src: "{% static 'css/images/background-principal.png' %}"
+            });
+        })(jQuery);
+    </script>
+{% endblock %}
